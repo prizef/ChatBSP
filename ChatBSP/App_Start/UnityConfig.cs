@@ -1,6 +1,8 @@
+using ChatBSP.Providers;
 using System;
-
+using System.Configuration;
 using Unity;
+using Unity.Injection;
 
 namespace ChatBSP
 {
@@ -42,6 +44,9 @@ namespace ChatBSP
 
             // TODO: Register your type's mappings here.
             // container.RegisterType<IProductRepository, ProductRepository>();
+
+            // This is per request.
+            container.RegisterType<IDataProvider, SqlDataProvider>();
         }
     }
 }
