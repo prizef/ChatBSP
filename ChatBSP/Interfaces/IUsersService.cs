@@ -7,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace ChatBSP.Services
 {
-    interface IUsersService
+    public interface IUsersService
     {
-        bool GoogleLogin(GoogleLoginRequest model);
+        bool GoogleSignin(GoogleSigninRequest model);
+        List<User> GetAll();
+        User GetById(int id);
+        void Update(UserUpdateRequest model);
+        void Delete(int id);
     }
 }
