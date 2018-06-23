@@ -6,7 +6,7 @@ using System.Web;
 
 namespace ChatBSP.Models
 {
-    public class GoogleLoginRequest
+    public class GoogleSigninRequest
     {
         [Required]
         public string GoogleToken { get; set; }

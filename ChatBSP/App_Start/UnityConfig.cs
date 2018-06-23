@@ -1,4 +1,5 @@
 using ChatBSP.Providers;
+using ChatBSP.Services;
 using System;
 using System.Configuration;
 using Unity;
@@ -44,6 +45,7 @@ namespace ChatBSP
 
             // TODO: Register your type's mappings here.
             // container.RegisterType<IProductRepository, ProductRepository>();
+            container.RegisterType<IUsersService, UsersService>();
 
             // This is per request.
             container.RegisterType<IDataProvider, SqlDataProvider>();

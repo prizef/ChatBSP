@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
+using System.Web.Security;
 
 namespace ChatBSP.Services
 {
@@ -19,7 +20,7 @@ namespace ChatBSP.Services
             this.dataProvider = dataProvider;
         }
 
-        public bool GoogleLogin(GoogleLoginRequest model)
+        public bool GoogleSignin(GoogleSigninRequest model)
         {
             bool userAuthenticated = false;
             int userId = 0;
@@ -37,38 +38,105 @@ namespace ChatBSP.Services
             }
 
             var gapiRespString = (JObject)JsonConvert.DeserializeObject(gapiRespObject);
-            string authEmail = gapiRespString["email"].Value<string>();
             string authAud = gapiRespString["aud"].Value<string>();
             string authFirstName = gapiRespString["given_name"].Value<string>();
             string authLastName = gapiRespString["family_name"].Value<string>();
-            string authPassword = gapiRespString["sub"].Value<string>();
+            string authImage = gapiRespString["picture"].Value<string>();
+            string authEmail = gapiRespString["email"].Value<string>();
 
             if (authAud == googleClientId)
             {
                 userAuthenticated = true;
 
                 dataProvider.ExecuteProcedure(
-                "Users_GoogleLogin",
+                "Users_GoogleSignin",
                 inputParamMapper: (parameters) =>
                 {
-                    parameters.AddWithValue("@Email", authEmail);
                     parameters.AddWithValue("@FirstName", authFirstName);
                     parameters.AddWithValue("@LastName", authLastName);
-                    parameters.AddWithValue("@UserTypeId", (object)DBNull.Value);
-                    parameters.AddWithValue("@Password", authPassword);
+                    parameters.AddWithValue("@ImageURL", authImage);
+                    parameters.AddWithValue("@Email", authEmail);
+                    parameters.AddWithValue("@GoogleId", authAud);
                 },
-                outputParamMapper: (reader) =>
+                rowMapper: (parameters) =>
                 {
-                    userId = (int)reader["Id"].Value;
+                    userId = (int)parameters["Id"];
                 });
 
-                UserAuthData userAuthData = new UserAuthData()
-                {
-                    Id = userId
-                };
-                authenticationService.LogIn(userAuthData, true);
+                FormsAuthentication.SetAuthCookie(Convert.ToString(userId), true);
             }
             return userAuthenticated;
+        }
+
+        public List<User> GetAll()
+        {
+            List<User> results = new List<User>();
+            dataProvider.ExecuteProcedure(
+                "Users_GetAll",
+                rowMapper: (parameters) =>
+                {
+                    User user = new User();
+                    user.Id = (int)parameters["Id"];
+                    user.FirstName = (string)parameters["FirstName"];
+                    user.LastName = (string)parameters["LastName"];
+                    user.ImageURL = (string)parameters["ImageURL"];
+                    user.Email = (string)parameters["Email"];
+                    user.GoogleId = (string)parameters["GoogleId"];
+                    user.DateCreated = (DateTime)parameters["DateCreated"];
+                    user.DateModified = (DateTime)parameters["DateModified"];
+                    results.Add(user);
+                });
+            return results;
+        }
+
+        public User GetById(int id)
+        {
+            User result = new User();
+            dataProvider.ExecuteProcedure(
+                "Users_GetById",
+                inputParamMapper: (parameters) =>
+                {
+                    parameters.AddWithValue("@Id", id);
+                },
+                rowMapper: (reader) =>
+                {
+                    result.Id = (int)reader["Id"];
+                    result.FirstName = (string)reader["FirstName"];
+                    result.LastName = (string)reader["LastName"];
+                    result.ImageURL = (string)reader["ImageURL"];
+                    result.Email = (string)reader["Email"];
+                    result.GoogleId = (string)reader["GoogleId"];
+                    result.DateCreated = (DateTime)reader["DateCreated"];
+                    result.DateModified = (DateTime)reader["DateModified"];
+                });
+            return result;
+        }
+
+        public void Update(UserUpdateRequest model)
+        {
+            dataProvider.ExecuteProcedure(
+                "Users_Update",
+                inputParamMapper: (parameters) =>
+                {
+                    parameters.AddWithValue("@Id", model.Id);
+                    parameters.AddWithValue("@FirstName", model.FirstName);
+                    parameters.AddWithValue("@LastName", model.LastName);
+                    parameters.AddWithValue("@ImageURL", model.ImageURL ?? (object)DBNull.Value);
+                    parameters.AddWithValue("@Email", model.Email);
+                    parameters.AddWithValue("@GoogleId", model.GoogleId);
+                }
+            );
+        }
+
+        public void Delete(int id)
+        {
+            dataProvider.ExecuteProcedure(
+                "Users_Delete",
+                inputParamMapper: (parameters) =>
+                {
+                    parameters.AddWithValue("@Id", id);
+                }
+            );
         }
     }
 }
