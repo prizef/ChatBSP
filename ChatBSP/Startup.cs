@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Web.Http;
+using ChatBSP.Hubs;
 using Microsoft.AspNet.SignalR;
 using Microsoft.Owin;
 using Owin;

@@ -28,7 +28,7 @@ class GoogleSignin extends React.Component {
   componentDidMount() {
     window.gapi.signin2.render("my-signin2", {
       scope: "profile email",
-      width: 130,
+      width: 50,
       height: 50,
       longtitle: false,
       theme: "dark",
