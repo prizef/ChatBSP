@@ -46,7 +46,7 @@ class App extends Component {
             <Button label="Link" className="ui-button-primary" />
           </div>
         </div>
-        <pre>{JSON.stringify(this.state, null, 3)}</pre>
+        {/* <pre>{JSON.stringify(this.state, null, 3)}</pre> */}
         <GoogleSignin />
         <Chat />
       </div>

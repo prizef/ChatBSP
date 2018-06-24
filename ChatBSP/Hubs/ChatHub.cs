@@ -8,9 +8,9 @@ namespace ChatBSP.Hubs
 {
     public class ChatHub : Hub
     {
-        public void Hello()
+        public void Send(string message)
         {
-            Clients.All.hello();
+            Clients.All.broadcastMessage("hello");
         }
     }
 }
