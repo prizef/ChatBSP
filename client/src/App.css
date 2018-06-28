@@ -5,8 +5,8 @@
 .banner {
   height: 100vh;
   display: grid;
-  grid-template-rows: 3em 1fr 3em;
-  grid-template-columns: 1fr 10em 10em 10em 1fr;
+  grid-template-rows: 20% 60% 20%;
+  grid-template-columns: 20% 20% 20% 20% 20%;
 }
 
 img {
@@ -29,27 +29,35 @@ img {
 
 .header {
   background-color: #20272a;
-  display: block;
-  padding: 0;
-  height: 70px;
+  height: 60px;
   box-sizing: border-box;
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: absolute;
   width: 100%;
   z-index: 999;
   box-shadow: 0 2px 5px 0 rgba(0,0,0,.3);
+  overflow: hidden;
 }
 
-.topbar-menu > li {
+.topnav {
+  display: table;
+  height: 100%;
+  float: right;
+}
+
+.topnav a {
+  text-align: center;
+  font-size: 17px;
   text-decoration: none;
   color: #fff;
-  min-width: 120px;
-  display: inline-block;
-  text-align: center;
+  min-width: 105px;
   box-sizing: border-box;
   height: 100%;
-  line-height: 40px;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.topnav > a:hover {
+  background-color:#4a4f52;
 }
 
 .bottomNav1 {

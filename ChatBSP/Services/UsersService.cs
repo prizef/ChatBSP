@@ -122,8 +122,8 @@ namespace ChatBSP.Services
                     parameters.AddWithValue("@FirstName", model.FirstName);
                     parameters.AddWithValue("@LastName", model.LastName);
                     parameters.AddWithValue("@ImageURL", model.ImageURL ?? (object)DBNull.Value);
-                    parameters.AddWithValue("@Email", model.Email);
-                    parameters.AddWithValue("@GoogleId", model.GoogleId);
+                    parameters.AddWithValue("@Email", model.Email ?? (object)DBNull.Value);
+                    parameters.AddWithValue("@GoogleId", model.GoogleId ?? (object)DBNull.Value);
                 }
             );
         }

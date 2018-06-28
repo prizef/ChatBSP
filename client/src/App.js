@@ -5,37 +5,34 @@ import "primereact/resources/themes/omega/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import { Button } from "primereact/components/button/Button";
-import * as Axios from "./server";
+import Admin from "./Admin";
 import GoogleSignin from "./GoogleSignin";
 import Chat from "./Chat";
+import { NavLink, Route, Link } from "react-router-dom";
+import UsersUpdate from "./UsersUpdate";
 
 class App extends Component {
-  state = {
-    users: ""
-  };
-
-  componentDidMount() {
-    const myPromise = Axios.users_getAll();
-    myPromise.then(resp => {
-      this.setState({
-        users: resp.data
-      });
-    });
-  }
-
   render() {
     return (
       <div className="App">
         <div className="banner">
           <img className="bgimage" src={background} alt="background" />
           <div className="header">
-            <ul className="topbar-menu">
-              <li>Link 1</li>
-              <li>Link 2</li>
-              <li>Link 3</li>
-            </ul>
+            <div className="topnav">
+              <NavLink exact to="/">
+                Home
+              </NavLink>
+
+              <NavLink exact to="/chat">
+                Chat
+              </NavLink>
+
+              <NavLink exact to="/admin">
+                Admin
+              </NavLink>
+            </div>
           </div>
-          <div className="overlay">Hello!</div>
+          <div className="overlay">prize</div>
           <div className="bottomNav1">
             <Button label="Link" className="ui-button-primary" />
           </div>
@@ -46,9 +43,14 @@ class App extends Component {
             <Button label="Link" className="ui-button-primary" />
           </div>
         </div>
-        {/* <pre>{JSON.stringify(this.state, null, 3)}</pre> */}
+        <Route exact path="/admin" render={props => <Admin {...props} />} />
+        <Route
+          exact
+          path="/admin/user/:id"
+          render={props => <UsersUpdate {...props} />}
+        />
+        <Route exact path="/chat" render={props => <Chat {...props} />} />
         <GoogleSignin />
-        <Chat />
       </div>
     );
   }
