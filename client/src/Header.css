@@ -1,0 +1,32 @@
+.header {
+  background-color: #20272a;
+  height: 60px;
+  box-sizing: border-box;
+  position: absolute;
+  width: 100%;
+  z-index: 999;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.topnav {
+  display: table;
+  height: 100%;
+  float: right;
+}
+
+.topnav a {
+  text-align: center;
+  font-size: 17px;
+  text-decoration: none;
+  color: #fff;
+  min-width: 105px;
+  box-sizing: border-box;
+  height: 100%;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.topnav > a:hover {
+  background-color: #4a4f52;
+}

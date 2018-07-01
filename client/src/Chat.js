@@ -12,9 +12,9 @@ class Chat extends React.Component {
     const chatHubProxy = this.connection.createHubProxy("chatHub");
 
     chatHubProxy.on("broadcastMessage", message => {
-        console.log("hi!");
-        const messages = [...this.state.chat, message];
-        this.setState({ chat: message });
+      console.log("hi!");
+      const messages = [...this.state.chat, message];
+      this.setState({ chat: message });
     });
 
     chatHubProxy.connection.url = "/signalr";
@@ -36,7 +36,7 @@ class Chat extends React.Component {
   render() {
     return (
       <div className="chatBox">
-      <pre>{JSON.stringify(this.state, null, 3)}</pre>
+        {/* <pre>{JSON.stringify(this.state, null, 3)}</pre> */}
         <div className="chatHeader">Chats</div>
         <div className="chatBody">Messages</div>
         <div className="chatFooter">Send message</div>
