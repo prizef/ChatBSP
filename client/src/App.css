@@ -1,3 +1,22 @@
 .App {
   margin: 0px;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr 60px;
+}
+
+.content {
+  background-color: #FFCC00;
+  height: 100%;
+  grid-row: 1;
+  display: grid;
+  grid-template-rows: 60px 1fr;
+}
+
+.header {
+  grid-row: 1;
+}
+
+.footer {
+  grid-row: 2;
 }

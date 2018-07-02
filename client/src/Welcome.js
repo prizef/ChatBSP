@@ -2,6 +2,7 @@ import React from "react";
 import background from "./background.jpg";
 import { Button } from "primereact/components/button/Button";
 import "./Welcome.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class Welcome extends React.Component {
   render() {
@@ -10,7 +11,8 @@ class Welcome extends React.Component {
         <img className="bgimage" src={background} alt="background" />
         <div className="overlay">prize</div>
         <div className="bottomNav1">
-          <Button label="Link" className="ui-button-primary" />
+          
+          <a href="your link here"><FontAwesomeIcon icon="comment-dots" /></a>
         </div>
         <div className="bottomNav2">
           <Button label="Link" className="ui-button-primary" />

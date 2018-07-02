@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 class Header extends React.Component {
   render() {
     return (
-      <div className="header">
+      <div className="navbar">
         <div className="topnav">
           <NavLink exact to="/">
             Home
