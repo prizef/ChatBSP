@@ -115,7 +115,7 @@
 	width: 30px;
 	border-radius: 50%;
 }
-.left-section .chatList .img i{
+.left-section .chatList .img .i{
 	position: absolute;
 	font-size: 10px;
 	color: #52E2A7;
@@ -167,6 +167,7 @@
 .message ul li.msg-left img{
 	position: absolute;
 	width: 40px;
+	height: 40px;
 	bottom: 30px;
 }
 .message ul li.msg-left .msg-desc{
@@ -196,6 +197,7 @@
 .message ul li.msg-right img{
 	position: absolute;
 	width: 40px;
+	height: 40px;
 	right: 0px;
 	bottom: 30px;
 }

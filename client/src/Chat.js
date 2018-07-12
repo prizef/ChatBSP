@@ -1,5 +1,6 @@
 import React from "react";
 import "./Chat.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class Chat extends React.Component {
   state = {
@@ -15,7 +16,7 @@ class Chat extends React.Component {
     chatHubProxy.on("broadcastMessage", message => {
       console.log("hi!");
       const messages = [...this.state.chat, message];
-      this.setState({ chat: message });
+      this.setState({ chat: messages });
     });
 
     chatHubProxy.connection.url = "/signalr";
@@ -37,93 +38,96 @@ class Chat extends React.Component {
   render() {
     return (
       <div className="chatBox">
-        {/* <pre>{JSON.stringify(this.state, null, 3)}</pre>*/}
+        <pre>{JSON.stringify(this.state, null, 3)}</pre>
 
-        <div class="main-section">
-          <div class="head-section">
-            <div class="headLeft-section">
-              <div class="headLeft-sub">
+        <div className="main-section">
+          <div className="head-section">
+            <div className="headLeft-section">
+              <div className="headLeft-sub">
                 <input type="text" name="search" placeholder="Search..." />
                 <button>
                   {" "}
-                  <i class="fa fa-search" />{" "}
+                  <FontAwesomeIcon icon="search" className="i" />{" "}
                 </button>
               </div>
             </div>
-            <div class="headRight-section">
-              <div class="headRight-sub">
+            <div className="headRight-section">
+              <div className="headRight-sub">
                 <h3>prize</h3>
-                <small>Lorem ipsum dolor sit amet...</small>
+                <small>Coding away...</small>
               </div>
             </div>
           </div>
-          <div class="body-section">
+          <div className="body-section">
             <div
-              class="left-section mCustomScrollbar"
+              className="left-section mCustomScrollbar"
               data-mcs-theme="minimal-dark"
             >
               <ul>
                 <li>
-                  <div class="chatList">
-                    <div class="img">
-                      <i class="fa fa-circle" />
-                      <img src="/demo/man01.png" />
+                  <div className="chatList">
+                    <div className="img">
+                      <FontAwesomeIcon icon="circle" className="i" />
+                      <img
+                        src="https://lh4.googleusercontent.com/--nIKkl5_l-k/AAAAAAAAAAI/AAAAAAAAAHQ/hG0fFDtkAHs/s96-c/photo.jpg"
+                        alt="user avatar"
+                      />
                     </div>
-                    <div class="desc">
-                      <small class="time">05:30 am</small>
+                    <div className="desc">
+                      <small className="time">05:30 am</small>
                       <h5>prize</h5>
-                      <small>Lorem ipsum dolor sit amet...</small>
+                      <small>Hey man, what's going...</small>
                     </div>
                   </div>
                 </li>
               </ul>
-
             </div>
-            <div class="right-section">
+            <div className="right-section">
               <div
-                class="message mCustomScrollbar"
+                className="message mCustomScrollbar"
                 data-mcs-theme="minimal-dark"
               >
                 <ul>
-                  <li class="msg-left">
-                    <div class="msg-left-sub">
-                      <img src="/demo/man03.png" />
-                      <div class="msg-desc">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit, sed do eiusmod tempor incididunt ut labore et
-                        dolore magna aliqua.
+                  <li className="msg-left">
+                    <div className="msg-left-sub">
+                      <img
+                        src="https://lh4.googleusercontent.com/--nIKkl5_l-k/AAAAAAAAAAI/AAAAAAAAAHQ/hG0fFDtkAHs/s96-c/photo.jpg"
+                        alt="user avatar"
+                      />
+                      <div className="msg-desc">
+                        Hey man, what's going on?
                       </div>
                       <small>05:25 am</small>
                     </div>
                   </li>
-                  <li class="msg-right">
-                    <div class="msg-left-sub">
-                      <img src="/demo/man04.png" />
-                      <div class="msg-desc">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit, sed do eiusmod tempor incididunt ut labore et
-                        dolore magna aliqua.
+                  <li className="msg-right">
+                    <div className="msg-left-sub">
+                      <img
+                        src="https://lh4.googleusercontent.com/--nIKkl5_l-k/AAAAAAAAAAI/AAAAAAAAAHQ/hG0fFDtkAHs/s96-c/photo.jpg"
+                        alt="user avatar"
+                      />
+                      <div className="msg-desc">
+                        Not much over here.
                       </div>
                       <small>05:25 am</small>
                     </div>
                   </li>
-                  <li class="msg-day">
+                  <li className="msg-day">
                     <small>Wednesday</small>
                   </li>
                 </ul>
-
               </div>
-              <div class="right-section-bottom">
+              <div className="right-section-bottom">
                 <form>
-                  <div class="upload-btn">
-                    <button class="btn">
-                      <i class="fa fa-photo" />
+                  <div className="upload-btn">
+                    <button className="btn">
+                      <FontAwesomeIcon icon="image" className="i" />
                     </button>
                     <input type="file" name="myfile" />
                   </div>
                   <input type="text" name="" placeholder="type here..." />
-                  <button class="btn-send">
-                    <i class="fa fa-send" />
+                  <button className="btn-send">
+                    <FontAwesomeIcon icon="paper-plane" className="i" />
                   </button>
                 </form>
               </div>

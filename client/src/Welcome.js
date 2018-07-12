@@ -1,6 +1,5 @@
 import React from "react";
 import background from "./background.jpg";
-import { Button } from "primereact/components/button/Button";
 import "./Welcome.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink } from "react-router-dom";

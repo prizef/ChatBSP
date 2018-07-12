@@ -14,10 +14,14 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faCode,
   faChevronLeft,
-  faChevronRight
+  faChevronRight,
+  faSearch,
+  faCircle,
+  faPaperPlane,
+  faImage
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faChevronLeft, faChevronRight, faCode);
+library.add(faChevronLeft, faChevronRight, faCode, faSearch, faCircle, faPaperPlane, faImage);
 
 class App extends Component {
   render() {
