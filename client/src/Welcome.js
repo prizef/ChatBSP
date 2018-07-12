@@ -2,7 +2,8 @@ import React from "react";
 import background from "./background.jpg";
 import { Button } from "primereact/components/button/Button";
 import "./Welcome.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { NavLink } from "react-router-dom";
 
 class Welcome extends React.Component {
   render() {
@@ -11,14 +12,19 @@ class Welcome extends React.Component {
         <img className="bgimage" src={background} alt="background" />
         <div className="overlay">prize</div>
         <div className="bottomNav1">
-          
-          <a href="your link here"><FontAwesomeIcon icon="comment-dots" /></a>
+          <NavLink exact to="/">
+            <FontAwesomeIcon icon="chevron-left" />
+          </NavLink>
         </div>
         <div className="bottomNav2">
-          <Button label="Link" className="ui-button-primary" />
+          <NavLink exact to="/chat">
+            <FontAwesomeIcon icon="code" />
+          </NavLink>
         </div>
         <div className="bottomNav3">
-          <Button label="Link" className="ui-button-primary" />
+          <NavLink exact to="/">
+            <FontAwesomeIcon icon="chevron-right" />
+          </NavLink>
         </div>
       </div>
     );

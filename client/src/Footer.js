@@ -1,5 +1,5 @@
 import React from "react";
-import "./footer.css";
+import "./Footer.css";
 import GoogleSignin from "./GoogleSignin";
 
 class Footer extends React.Component {

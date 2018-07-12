@@ -10,10 +10,14 @@ import { Route } from "react-router-dom";
 import UsersUpdate from "./UsersUpdate";
 import Welcome from "./Welcome";
 import Header from "./Header";
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faCheckSquare, faCoffee, faCommentDots } from '@fortawesome/free-solid-svg-icons'
+import { library } from "@fortawesome/fontawesome-svg-core";
+import {
+  faCode,
+  faChevronLeft,
+  faChevronRight
+} from "@fortawesome/free-solid-svg-icons";
 
-library.add(faCheckSquare, faCoffee, faCommentDots)
+library.add(faChevronLeft, faChevronRight, faCode);
 
 class App extends Component {
   render() {
