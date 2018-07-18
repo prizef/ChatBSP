@@ -15,20 +15,20 @@ namespace ChatBSP.Services
             this.dataProvider = dataProvider;
         }
 
-        public string GetChatByUserId(string userId)
+        public string GetChatByGroupId(string userId)
         {
-            var jsonResult = new StringBuilder();
+            List<Messages> results = new List<Messages>();
             dataProvider.ExecuteProcedure(
-                "Notifications_GetByUserId",
+                "Messages_GetByGroupId",
                 inputParamMapper: parameters =>
                 {
                     parameters.AddWithValue("@UserId", userId);
                 },
                 rowMapper: (reader) =>
                 {
-                    jsonResult.Append(reader.GetString(0));
+                    results.Append(reader.GetString(0));
                 });
-            return jsonResult.ToString();
+            return results;
         }
     }
 }

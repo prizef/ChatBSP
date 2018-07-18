@@ -8,6 +8,6 @@ namespace ChatBSP
 {
     public interface IChatService
     {
-        string GetChatByUserId(string userId);
+        string GetChatByGroupId(string userId);
     }
 }
