@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChatBSP.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace ChatBSP
 {
     public interface IChatService
     {
-        string GetChatByGroupId(string userId);
+        List<Message> GetChatByGroupId(int userId);
     }
 }

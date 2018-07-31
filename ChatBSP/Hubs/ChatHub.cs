@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using ChatBSP.Models;
 using Microsoft.AspNet.SignalR;
 
 namespace ChatBSP.Hubs
@@ -23,8 +24,8 @@ namespace ChatBSP.Hubs
             string userId = Context.User.Identity.Name;
             string connectionId = Context.ConnectionId;
 
-            string chat = chatService.GetChatByUserId(userId);
-            Clients.Caller.addNotification(chat);
+            List<Message> message = chatService.GetChatByGroupId(Convert.ToInt32(userId));
+            Clients.Caller.addNotification(message);
 
             lock (userIdToConnectionIds)
             {

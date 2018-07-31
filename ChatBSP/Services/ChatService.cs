@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChatBSP.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,18 +16,21 @@ namespace ChatBSP.Services
             this.dataProvider = dataProvider;
         }
 
-        public string GetChatByGroupId(string userId)
+        public List<Message> GetChatByGroupId(int userId)
         {
-            List<Messages> results = new List<Messages>();
+            List<Message> results = new List<Message>();
             dataProvider.ExecuteProcedure(
                 "Messages_GetByGroupId",
                 inputParamMapper: parameters =>
                 {
                     parameters.AddWithValue("@UserId", userId);
                 },
-                rowMapper: (reader) =>
+                rowMapper: reader =>
                 {
-                    results.Append(reader.GetString(0));
+                    Message message = new Message();
+                    message.GroupId = (int)reader["GroupId"];
+                    results.Add(message);
+
                 });
             return results;
         }
