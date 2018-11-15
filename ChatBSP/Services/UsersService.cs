@@ -68,6 +68,29 @@ namespace ChatBSP.Services
             return userAuthenticated;
         }
 
+        public User GetCurrentUser(int id)
+        {
+            User result = new User();
+            dataProvider.ExecuteProcedure(
+                "Users_GetById",
+                inputParamMapper: (parameters) =>
+                {
+                    parameters.AddWithValue("@Id", id);
+                },
+                rowMapper: (reader) =>
+                {
+                    result.Id = (int)reader["Id"];
+                    result.FirstName = (string)reader["FirstName"];
+                    result.LastName = (string)reader["LastName"];
+                    result.ImageURL = (string)reader["ImageURL"];
+                    result.Email = (string)reader["Email"];
+                    result.GoogleId = (string)reader["GoogleId"];
+                    result.DateCreated = (DateTime)reader["DateCreated"];
+                    result.DateModified = (DateTime)reader["DateModified"];
+                });
+            return result;
+        }
+
         public List<User> GetAll()
         {
             List<User> results = new List<User>();

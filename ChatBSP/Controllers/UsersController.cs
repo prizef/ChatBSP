@@ -30,6 +30,14 @@ namespace ChatBSP.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, authToken);
         }
 
+        [Route("api/users/getcurrentuser"), HttpGet]
+        public HttpResponseMessage GetCurrentUser()
+        {
+            var getCurrentUser = User.Identity.Name;
+            var currentUser = usersService.GetCurrentUser(Convert.ToInt32(User.Identity.Name));
+            return Request.CreateResponse(HttpStatusCode.OK, currentUser);
+        }
+
         [Route("api/users"), HttpGet]
         public HttpResponseMessage GetAll()
         {
