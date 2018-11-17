@@ -6,7 +6,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
+using System.Web.Security;
 
 namespace ChatBSP.Controllers
 {
@@ -33,16 +35,18 @@ namespace ChatBSP.Controllers
         [Route("api/users/getcurrentuser"), HttpGet]
         public HttpResponseMessage GetCurrentUser()
         {
-            var getCurrentUser = User.Identity.Name;
-            var currentUser = usersService.GetCurrentUser(Convert.ToInt32(User.Identity.Name));
+            var currentUser = new User();
+            if (HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                var userId = HttpContext.Current.User.Identity.Name;
+                currentUser = usersService.GetCurrentUser(Convert.ToInt32(userId));
+            }
             return Request.CreateResponse(HttpStatusCode.OK, currentUser);
         }
 
         [Route("api/users"), HttpGet]
         public HttpResponseMessage GetAll()
         {
-            // Prints the user id
-            Trace.WriteLine(User.Identity.Name);
             List<User> users = usersService.GetAll();
             return Request.CreateResponse(HttpStatusCode.OK, users);
         }
@@ -57,9 +61,6 @@ namespace ChatBSP.Controllers
         [Route("api/users/{id:int}"), HttpPut]
         public HttpResponseMessage Update(int id, UserUpdateRequest model)
         {
-            // TODO: this needs to check the user ID in the cookie and make sure the calling user
-            // is actually allowed to update this user
-
             if (model == null)
             {
                 ModelState.AddModelError("", "You did not send any body data!");

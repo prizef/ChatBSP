@@ -21,3 +21,7 @@ export function users_update(data) {
 export function users_delete(id) {
   return axios.delete("/api/users/" + id);
 }
+
+export function users_getCurrentUser() {
+  return axios.get("/api/users/getcurrentuser");
+}

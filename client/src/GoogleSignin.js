@@ -45,6 +45,9 @@ class GoogleSignin extends React.Component {
     })
       .then(response => {
         console.log(response.data);
+        Server.users_getCurrentUser().then((response) => {
+          console.log(response.data.id);
+        });
       })
       .catch(error => {
         console.log(error);
