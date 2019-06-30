@@ -29,16 +29,10 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "proxy": {
-    "/api": {
-      "target": "http://localhost:50623/"
-    },
-    "/signalr": {
-      "target": "http://localhost:50623/",
-      "ws": true
-    },
-    "/Scripts": {
-      "target": "http://localhost:50623/"
-    }
-  }
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
